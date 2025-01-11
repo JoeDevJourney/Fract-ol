@@ -6,7 +6,7 @@
 #    By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 14:11:30 by jbrandt           #+#    #+#              #
-#    Updated: 2025/01/10 14:14:31 by jbrandt          ###   ########.fr        #
+#    Updated: 2025/01/11 12:17:00 by jbrandt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,12 @@ LIBFT = ./libft
 LIBS = /include
 
 RM = rm -f
+
+$(LIBMLX):
+    git submodule update --init --recursive
+    @cmake MLX42 -B MLX42/build && make -C MLX42/build -j4
+
+
 FILES = 
 
 OBJ_DIR = build
