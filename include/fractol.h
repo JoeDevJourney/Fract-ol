@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                                 */
-/*   fractol.h                                          +      +    +   */
-/*                                                    ++ ++         ++     */
-/*   By jbrandt <jbrandt@student.42.fr>            +#+  ++       +#+        */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created 2025/01/10 141502 by jbrandt           #+#    #+#             */
-/*   Updated 2025/01/12 143834 by jbrandt          ###   ########.fr       */
+/*   Created: 2025/01/12 15:16:18 by jbrandt           #+#    #+#             */
+/*   Updated: 2025/01/12 17:45:19 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../MLX42/MLX42.h"
-# include "../MLX42/MLX42_Int.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42_Int.h"
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include <math.h>
@@ -38,5 +38,45 @@
 # define FLUORESCENT_GREEN 	0x00FF00
 # define HOT_ORANGE 		0xFF4500
 # define BLAZING_PURPLE 	0x9900FF
+
+typedef struct s_fractol
+{
+	char		*title;
+	void		*mlx_connect;
+	void		*window;
+	void		*img;
+	char		*img_addr;
+	int			img_bpp;
+	int			img_line;
+	int			img_endian;
+	double		cmplx_r;
+	double		cmplx_i;
+	double		hypotenuse;
+	int			iterations;
+	double		shift_r;
+	double		shift_i;
+	double		zoom;
+	int			current_color;
+	double		julia_r;
+	double		julia_i;
+}	t_fractol;
+
+typedef struct s_map_coords
+{
+	double		unscaled_num;
+	double		new_min;
+	double		new_max;
+	double		old_min;
+	double		old_max;
+}	t_map_coords;
+
+double			map(t_map_coords coords);
+t_fractol		square_complex(t_fractol z);
+t_fractol		sum_complex(t_fractol z1, t_fractol z2);
+double			atod(char *s);
+void			malloc_error(void);
+void			zoom_in(t_fractol *fract, double mouse_r, double mouse_i);
+void			zoom_out(t_fractol *fract, double mouse_r, double mouse_i);
+void			create_windows(t_fractol *fract);
 
 #endif
