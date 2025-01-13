@@ -6,13 +6,13 @@
 #    By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/07 17:25:46 by jbrandt           #+#    #+#              #
-#    Updated: 2024/12/02 12:36:48 by jbrandt          ###   ########.fr        #
+#    Updated: 2025/01/13 12:38:49 by jbrandt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 FT_PRINTF_DIR = ft_printf

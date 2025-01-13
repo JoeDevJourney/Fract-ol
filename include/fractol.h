@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:16:18 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/12 17:45:19 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:21:09 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define FRACTOL_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../MLX42/include/MLX42/MLX42_Int.h"
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
 
 # define HEIGHT 800
 # define WIDTH 800
@@ -34,17 +35,22 @@
 # define PSYCHEDELIC_RED 	0xFF496C
 # define ELECTRIC_LIME 		0xCCFF00
 # define NEON_BLUE 			0x1B03A3
-# define BBRIGHT_CYAN 		0x00FFFF
+# define BRIGHT_CYAN 		0x00FFFF
 # define FLUORESCENT_GREEN 	0x00FF00
 # define HOT_ORANGE 		0xFF4500
 # define BLAZING_PURPLE 	0x9900FF
 
+typedef struct s_img
+{
+	void		*mlx_img;
+}	t_img;
 typedef struct s_fractol
 {
+	void		*mlx;
 	char		*title;
 	void		*mlx_connect;
 	void		*window;
-	void		*img;
+	t_img		*img;
 	char		*img_addr;
 	int			img_bpp;
 	int			img_line;
@@ -77,6 +83,9 @@ double			atod(char *s);
 void			malloc_error(void);
 void			zoom_in(t_fractol *fract, double mouse_r, double mouse_i);
 void			zoom_out(t_fractol *fract, double mouse_r, double mouse_i);
-void			create_windows(t_fractol *fract);
+int				clean_exit(t_fractol *fract);
+int				handle_key(int key, t_fractol *fract);
+int				handle_mouse(int button, int x, int y, t_fractol *fract);
+int				main(int argc, char **argv);
 
 #endif
