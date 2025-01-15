@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:41:47 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/15 03:27:15 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 05:08:21 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	events_initia(t_fractol *fract)
 {
 	mlx_key_hook(fract->mlx_connect, handle_keys, fract);
+	mlx_scroll_hook(fract->mlx_connect, handle_scroll, fract);
 	mlx_close_hook(fract->mlx_connect, close_window, fract);
 }
 

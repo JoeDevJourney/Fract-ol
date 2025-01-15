@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:16:18 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/15 03:41:26 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 04:03:42 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void			zoom_out(t_fractol *fract, double mouse_r, double mouse_i);
 int				blend_colors(int color1, int color2, double t);
 void			color_shift(t_fractol *fract);
 void			handle_keys(mlx_key_data_t keydata, void *param);
+void			handle_scroll(double xdelta, double ydelta, void *param);
 void			close_window(void *param);
 void			clean_exit(void *param);
 void			fractol_init(t_fractol *fract);
