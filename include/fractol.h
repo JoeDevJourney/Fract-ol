@@ -6,14 +6,14 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:16:18 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/15 04:03:42 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 06:15:30 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include <math.h>
