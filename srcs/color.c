@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:04:52 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/13 14:40:27 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 03:16:17 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	blend_colors(int color1, int color2, double t)
 	b = (int)((1 - t) * (color1 & 0xFF) + t * \
 			(color2 & 0xFF) * 5);
 	r = (int)(r + (255 - r) * t * 1.5);
-	g = (int)(g + (255 - g) * t * 0,2);
+	g = (int)(g + (255 - g) * t * 0.2);
 	b = (int)(b + (255 - b) * t * 4);
 	return ((r << 16) | (g << 8) | b);
 }

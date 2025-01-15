@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:50:42 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/13 19:09:41 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 03:17:48 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_fractol	fract;
 
+	ft_memset(&fract, 0, sizeof(t_fractol));
 	if ((argc == 2 && \
 		!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot") + 1))
 		|| (argc == 4 && \
@@ -29,5 +30,12 @@ int	main(int argc, char **argv)
 			fract.julia_i = atod(argv[3]);
 		}
 		fractol_init(&fract);
+		fractol_render(&fract);
+		mlx_loop(fract.mlx_connect);
+		return (0);
 	}
+	ft_printf("Invalid Input\nTry:\n");
+	ft_printf("./fractol mandelbrot or\n ./fractol julia -0.4 +0.6");
+	ft_printf("or\n ./fractol julia -0.835  -0.2321\n");
+	exit(EXIT_FAILURE);
 }

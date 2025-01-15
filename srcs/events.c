@@ -6,64 +6,68 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:47:09 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/13 16:45:57 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 03:41:26 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-int	clean_exit(t_fractol *fract)
+void	close_window(void *param)
 {
-	mlx_delete_image(fract->mlx_connect, fract->img);
-	mlx_terminate(fract->mlx_connect);
-	free(fract->mlx_connect);
-	exit(EXIT_SUCCESS);
+	clean_exit(param);
 }
 
-int	handle_keys(int key, t_fractol *fract)
+void	clean_exit(void *param)
 {
-	if (key == 51)
-		clean_exit(fract);
-	else if (key == 123 || key == 0)
+	t_fractol	*fract;
+
+	fract = (t_fractol *)param;
+	if (fract->img)
+		mlx_delete_image(fract->mlx_connect, fract->img);
+	if (fract->mlx_connect)
+		mlx_terminate(fract->mlx_connect);
+	exit(0);
+}
+
+void	handle_keys(mlx_key_data_t keydata, void *param)
+{
+	t_fractol	*fract;
+
+	fract = (t_fractol *)param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(fract->mlx_connect);
+	else if (keydata.key == MLX_KEY_LEFT || keydata.key == \
+		MLX_KEY_A)
 		fract->shift_r += (0.1 * fract->zoom);
-	else if (key == 124 || key == 2)
-		fract->shift_r += (0.1 * fract-> zoom);
-	else if (key == 126 || key == 13)
-		fract->shift_i += (0.1 * fract-> zoom);
-	else if (key == 125 || key == 1)
-		fract->shift_i += (0.1 * fract-> zoom);
+	else if (keydata.key == MLX_KEY_RIGHT || keydata.key == \
+		MLX_KEY_D)
+		fract->shift_r += (0.1 * fract->zoom);
+	else if (keydata.key == MLX_KEY_UP || keydata.key == \
+		MLX_KEY_W)
+		fract->shift_i += (0.1 * fract->zoom);
+	else if (keydata.key == MLX_KEY_DOWN || keydata.key == \
+		MLX_KEY_S)
+		fract->shift_i += (0.1 * fract->zoom);
 	fractol_render(fract);
-	return (0);
 }
 
-static int	julia_track(int button, int x, int y, t_fractol *fract)
+void	handle_scroll(double xdelta, double ydelta, void *param)
 {
-	if (button == 1 || button == 2)
-	{
-		fract->julia_r = (map((t_map_coords){x, -2, +2, 0, WIDTH}) + \
-			fract->zoom) + fract->shift_r;
-		fract->julia_i = (map((t_map_coords){x, -2, +2, 0, HEIGHT}) + \
-			fract->zoom) + fract->shift_i;
-		fractol_render(fract);
-	}
-	return (0);
-}
+	t_fractol	*fract;
+	double		mouse_r;
+	double		mouse_i;
+	int			x;
+	int			y;
 
-int	handle_mouse(int button, int x, int y, t_fractol *fract)
-{
-	double	mouse_r;
-	double	mouse_i;
-
-	mouse_r = (x - WIDTH / 2) / (0.5 * WIDTH * fract->zoom) * \
-		fract->shift_r;
+	(void)xdelta;
+	fract = (t_fractol *)param;
+	mlx_get_mouse_pos(fract->mlx_connect, &x, &y);
+	mouse_r = (x - WIDTH / 2) / (0.5 * WIDTH * fract->zoom) * fract->shift_r;
 	mouse_i = (y - HEIGHT / 2) / (0.5 * HEIGHT * fract->zoom) * \
 		fract->shift_i;
-	if (!ft_strncmp(fract->title, "Julia", 5))
-		julia_track(button, x, y, fract);
-	if (button == 4)
+	if (ydelta > 0)
 		zoom_in(fract, mouse_r, mouse_i);
-	else if (button == 5)
+	else if (ydelta < 0)
 		zoom_out(fract, mouse_r, mouse_i);
 	fractol_render(fract);
-	return (0);
 }
