@@ -6,7 +6,7 @@
 /*   By: jbrandt <jbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:50:42 by jbrandt           #+#    #+#             */
-/*   Updated: 2025/01/15 05:12:28 by jbrandt          ###   ########.fr       */
+/*   Updated: 2025/01/15 05:57:47 by jbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	{
 		argv[1][0] = ft_toupper(argv[1][0]);
 		fract.title = argv[1];
-		if (!ft_strncmp(fract.title, "julia", 5))
+		if (!ft_strncmp(fract.title, "Julia", 5))
 		{
 			fract.julia_r = atod(argv[2]);
 			fract.julia_i = atod(argv[3]);
